@@ -56,7 +56,7 @@ func InitRepository() error {
 }
 
 func printInitSuccess(path string) {
-	fmt.Println("    ,-.")
-	fmt.Println("   /_ O>  Karasu repository initialized")
+	fmt.Println("    __")
+	fmt.Println("   /_ 0>  からす - repository initialized!")
 	fmt.Println("   `- '   at:", path)
 }
