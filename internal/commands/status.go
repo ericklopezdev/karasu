@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 func StatusRepository() error {
@@ -55,6 +56,22 @@ func StatusRepository() error {
 			fmt.Println("No commits yet")
 		} else {
 			fmt.Printf("Latest commit: %s\n", string(commitHash))
+		}
+	}
+
+	// read index and show staged files
+	indexPath := filepath.Join(karasuPath, "index")
+	if indexData, err := os.ReadFile(indexPath); err == nil && len(indexData) > 0 {
+		fmt.Println("\nChanges to be committed:")
+		lines := strings.Split(string(indexData), "\n")
+		for _, line := range lines {
+			if line == "" {
+				continue
+			}
+			parts := strings.SplitN(line, " ", 2)
+			if len(parts) == 2 {
+				fmt.Printf("  new file: %s\n", parts[1])
+			}
 		}
 	}
 
