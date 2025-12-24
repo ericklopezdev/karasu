@@ -17,6 +17,7 @@ func main() {
 
 	rootCmd.AddCommand(initCmd())
 	rootCmd.AddCommand(statusCmd())
+	rootCmd.AddCommand(addCmd())
 
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)
@@ -40,6 +41,16 @@ func statusCmd() *cobra.Command {
 		Short: "Show the working tree status",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			return commands.StatusRepository()
+		},
+	}
+}
+
+func addCmd() *cobra.Command {
+	return &cobra.Command{
+		Use:   "add [files...]",
+		Short: "Add file contents to the index",
+		RunE: func(cmd *cobra.Command, args []string) error {
+			return commands.AddFiles(args)
 		},
 	}
 }
