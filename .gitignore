@@ -19,6 +19,7 @@
 *.swo
 
 .karasu/
+karasu
 
 *.log
 
