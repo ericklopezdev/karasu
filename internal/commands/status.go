@@ -63,8 +63,8 @@ func StatusRepository() error {
 	indexPath := filepath.Join(karasuPath, "index")
 	if indexData, err := os.ReadFile(indexPath); err == nil && len(indexData) > 0 {
 		fmt.Println("\nChanges to be committed:")
-		lines := strings.Split(string(indexData), "\n")
-		for _, line := range lines {
+		lines := strings.SplitSeq(string(indexData), "\n")
+		for line := range lines {
 			if line == "" {
 				continue
 			}

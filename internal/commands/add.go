@@ -25,8 +25,8 @@ func AddFiles(files []string) error {
 
 	// read existing index
 	if indexData, err := os.ReadFile(indexPath); err == nil {
-		lines := strings.Split(string(indexData), "\n")
-		for _, line := range lines {
+		lines := strings.SplitSeq(string(indexData), "\n")
+		for line := range lines {
 			if line == "" {
 				continue
 			}
